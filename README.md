@@ -22,7 +22,6 @@ This step merges the grocery_sales table with the extra_data.parquet file.
 import pandas as pd
 import os
 
-# Extract function is already implemented for you 
 def extract(store_data, extra_data):
     extra_df = pd.read_parquet(extra_data)
     merged_df = store_data.merge(extra_df, on = "index")
