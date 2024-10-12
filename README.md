@@ -10,8 +10,8 @@ To create a data pipeline for analysis of supply and demand around the holidays,
 
 ## Data Sources
 
-- grocery_sales table, check out columns in the table
-- extra_data.parquet file, check out details here
+- grocery_sales table [check out columns in the table](
+- extra_data.parquet file [check out details here](https://github.com/Choiceugwuede/Retail_Data_Pipeline/blob/main/extra_data.parquet)
 
 ## Steps
 
