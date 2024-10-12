@@ -17,7 +17,7 @@ To create a data pipeline for analysis of supply and demand around the holidays,
 
 ### Extraction Layer
 ```Python
-   import pandas as pd
+import pandas as pd
 import os
 
 # Extract function is already implemented for you 
