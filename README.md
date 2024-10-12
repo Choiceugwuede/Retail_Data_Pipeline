@@ -2,20 +2,22 @@
 
 ## Project Overview
 
-To create a data pipeline for analysis of supply and demand around the holidays, data pipeline would involve 4 stages
-- Extraction
-- Transformation
-- Load
-- Validation
+This project aims to build an ETL pipeline for analyzing the supply and demand patterns around the holiday season. The pipeline involves 4 key stages:
+1. Extraction
+2. Transformation
+3. Load
+4. Validation
 
 ## Data Sources
 
-- grocery_sales table [check out columns in the table](https://github.com/Choiceugwuede/Retail_Data_Pipeline/blob/main/notebook.ipynb)
-- extra_data.parquet file [check out details here](https://github.com/Choiceugwuede/Retail_Data_Pipeline/blob/main/extra_data.parquet)
+- grocery_sales table: Contains key sales data [check out columns in the table](https://github.com/Choiceugwuede/Retail_Data_Pipeline/blob/main/notebook.ipynb)
+- extra_data.parquet file: Contains additional data to be merged with the main dataset. [check out details here](https://github.com/Choiceugwuede/Retail_Data_Pipeline/blob/main/extra_data.parquet)
 
-## Steps
+## Pipeline Steps
 
 ### Extraction Layer
+
+This step merges the grocery_sales table with the extra_data.parquet file.
 ```Python
 import pandas as pd
 import os
@@ -31,6 +33,8 @@ merged_df = extract(grocery_sales, "extra_data.parquet")
 ```
 
 ### Transformation Layer
+
+This step handles missing values, formats dates, filters the data, and selects relevant rows and columns for further analysis.
 ```Python
 def transform(raw_data):
     #fill in missing values with median
@@ -52,6 +56,8 @@ def transform(raw_data):
 ```
 
 ### Analysis Table
+
+This step calculates the average weekly sales for each month.
 ```Python
 def avg_weekly_sales_per_month(clean_data):
     result = (
@@ -69,6 +75,8 @@ agg_data=avg_weekly_sales_per_month(clean_data)
 ```
 
 ### Loading layer
+
+This step saves the final cleaned and aggregated datasets to CSV files.
 ```Python
 def load(full_data, full_data_file_path, agg_data, agg_data_file_path):
     full_data.to_csv(full_data_file_path,index=False)
@@ -77,6 +85,8 @@ def load(full_data, full_data_file_path, agg_data, agg_data_file_path):
 ```
 
 ### Validation Layer
+
+This step checks if the output file exists after the loading step.
 ```Python
 def validation(file_path):
     data_exists = os.path.isfile(file_path)
@@ -89,5 +99,8 @@ def validation(file_path):
     pass
 ```
 
+### Conclusion
+
+This pipeline enables efficient analysis of sales trends during the holidays by processing large data sets in a structured and validated manner
 
  
